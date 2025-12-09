@@ -189,6 +189,60 @@ S = X * (1 + 0.007) ** N
 S = int(S)  # Bỏ phần lẻ thập phân
 
 print("So tien nhan duoc sau", N, "thang la:", S)
+#W4A13: 
+def sum_of_divisors(n):
+    total = 0
+    for i in range(1, n):
+        if n % i == 0:
+            total += i
+    return total
+
+a = int(input())
+b = int(input())
+
+if sum_of_divisors(a) == b and sum_of_divisors(b) == a:
+    print("true")
+else:
+    print("false")
+
+#W4A14:
+import math
+
+m = int(input())
+n = int(input())
+
+print(math.gcd(m, n))
+
+
+#W4A15:
+def chicken_and_dog(total_animals, total_legs):
+    # Gọi:
+    # g = số gà
+    # c = số chó
+    # g + c = total_animals
+    # 2g + 4c = total_legs
+    
+    # Từ hệ:
+    # c = (total_legs - 2*total_animals) / 2
+    # g = total_animals - c
+
+    if (total_legs - 2 * total_animals) % 2 != 0:
+        return "invalid"
+
+    c = (total_legs - 2 * total_animals) // 2
+    g = total_animals - c
+
+    if g < 0 or c < 0:
+        return "invalid"
+
+    return g, c
+
+
+# Ví dụ:
+n, m = map(int, input("Nhập số lượng động vật và số chân (cách nhau bởi dấu cách): ").split())
+result = chicken_and_dog(n, m)
+print(result)
+
 
 #W4A16: 
 for i in range (1, 100):
@@ -246,6 +300,37 @@ for i in n:
     tong += int(i)
 
 print("Tổng các chữ số của n là:", tong)
+
+#W4A22: 
+n = int(input("Nhập n: "))
+
+chan = 0
+le = 0
+
+for ch in str(n):
+    if int(ch) % 2 == 0:
+        chan += 1
+    else:
+        le += 1
+
+print("Số chữ số chẵn:", chan)
+print("Số chữ số lẻ:", le)
+
+#W4A23: 
+n = float(input("Nhập số n: "))
+
+total = 0.0
+k = 0
+while total < n:
+    k += 1
+    total += k
+
+# lúc này total >= n, k là chỉ số đầu tiên khiến total >= n
+k_correct = k - 1
+sum_correct = total - k
+
+print("k lớn nhất thỏa S(k) < n là:", k_correct)
+print("S(k) =", sum_correct)
 
 #W4A24:
 A = float(input("Nhập số A: "))
@@ -335,6 +420,41 @@ def in_sodau ():
 in_sodau()
 
 #W4A29: 
+# Cách an toàn, dễ hiểu
+line = input("Nhập (ví dụ: 3, 12, 15): ").strip()
+
+# Tách theo dấu phẩy và loại khoảng trắng xung quanh
+parts = [p.strip() for p in line.split(',')]
+
+if len(parts) != 3:
+    print("Dữ liệu không hợp lệ — phải nhập đúng 3 số, cách nhau bằng dấu phẩy.")
+else:
+    try:
+        a, b, c = map(int, parts)   # chuyển từng phần về int
+        total = a + b + c
+        print("Tổng:", total)
+    except ValueError:
+        print("Dữ liệu không hợp lệ — các thành phần phải là số nguyên.")
+
+
+#W4A30: 
+s = input("Nhập chuỗi: ")
+
+upper = 0   # chữ in hoa
+lower = 0   # chữ in thường
+digit = 0   # chữ số
+
+for ch in s:
+    if ch.isupper():
+        upper += 1
+    elif ch.islower():
+        lower += 1
+    elif ch.isdigit():
+        digit += 1
+
+print("Ký tự in hoa:", upper)
+print("Ký tự in thường:", lower)
+print("Ký tự số:", digit)
 
 #W4A31: 
 
@@ -399,3 +519,20 @@ def chuoi():
     print("Chuỗi sau khi đảo ngược và thêm dấu chấm là:", result)
 
 chuoi()
+
+#W4A34:
+a = input("Nhập chuỗi a: ")
+b = input("Nhập chuỗi b: ")
+
+result = ""
+i = 0
+
+while i < len(a):
+    # kiểm tra xem tại vị trí i chuỗi b có xuất hiện không
+    if a[i:i+len(b)] == b:
+        i += len(b)    # bỏ qua đoạn giống chuỗi b
+    else:
+        result += a[i]
+        i += 1
+
+print("Chuỗi sau khi xóa:", result)
