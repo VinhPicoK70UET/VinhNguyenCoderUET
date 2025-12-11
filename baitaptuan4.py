@@ -5,7 +5,7 @@ for i in range (1, n +1):
     total += i
 print("Tổng từ 1 đến", n, "là:", total)
 
-#W4A2 
+#W4A2:
 # Nhập số
 n = int(input("Nhập một số nguyên bất kỳ: "))
 if n <= 0:
@@ -28,7 +28,7 @@ else:
         print(n, "là số nguyên tố")
     else:
         print(n, "không phải là số nguyên tố")
-#W4A3
+#W4A3:
 n = int(input("Nhập số nguyên n: "))
 if n <= 0 or n >= 100:
     print("giá trị không hợp lệ, vui lòng nhập số trong khoảng từ 1 đến 99.")
@@ -107,20 +107,22 @@ if n > 2:
 print("Ước số nguyên tố lớn nhất là:", largest_prime)
 #W2A8
 n = int(input("Nhập số nguyên dương n: "))
+
 def reverse_number(n):
-    return int("".join(reversed(str(n))))
+    return int(str(n)[::-1])
 
 def is_palindrome(n):
     return n == reverse_number(n)
-steps = 0
-while not is_palindrome(n):
-    if n == is_palindrome(n):   # nếu n là palindrome
-        break
-    else: 
-        n += is_palindrome(n)
-        steps += 1
 
-print("Số bước cần thực hiện để n trở thành số đối xứng là:", steps, "và số palindrome là:", n)
+steps = 0
+
+while not is_palindrome(n):
+    n = n + reverse_number(n)
+    steps += 1
+
+print("Số bước cần thực hiện:", steps)
+print("Số palindrome thu được:", n)
+
 
 #W4A9: 
 import math
